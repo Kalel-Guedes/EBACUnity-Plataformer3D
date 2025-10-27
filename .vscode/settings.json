@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Ebac 3D Plataform.sln"
+    "dotnet.defaultSolution": "EBACUnity-Plataformer3D.sln"
 }
