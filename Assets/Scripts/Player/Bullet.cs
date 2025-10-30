@@ -2,11 +2,15 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
+
+
 public class Bullet : MonoBehaviour
 {
     private float TimeReset = 5f;
     public int damage = 1;
     public float speed = 20f;
+    //public EnemyBase enemyBase;
+
 
     void Update()
     {
@@ -18,7 +22,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, TimeReset);
     }
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
         var enemy = collision.transform.GetComponent<EnemyBase>();
 
@@ -29,5 +33,5 @@ public class Bullet : MonoBehaviour
         }
         
 
-    }*/
+    }
 }
