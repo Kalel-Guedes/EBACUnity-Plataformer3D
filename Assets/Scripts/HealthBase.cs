@@ -3,61 +3,64 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
-public class HealthBase : MonoBehaviour
+namespace Health
 {
-    public int startLife = 10;
-
-    public bool destroyOnKill = false;
-
-    public float delayKill = 0f;
-
-    private int _currentLife;
-    private bool _isDead = false;
-
-    public bool isPlayer = false;
-
-    public Action OnKill;
-    //public AudioSource audioDamage;
-
-
-    void Awake()
+    public class HealthBase : MonoBehaviour
     {
-        Init();
-    }
+        public int startLife = 10;
 
-    private void Init()
-    {
-        _isDead = false;
-        _currentLife = startLife;
-    }
+        public bool destroyOnKill = false;
 
-    public void Damage(int damage)
-    {
-        if (_isDead) { return; }
+        public float delayKill = 0f;
 
-        _currentLife -= damage;
+        private int _currentLife;
+        private bool _isDead = false;
 
-        //if (isPlayer==true) {if (audioDamage != null) audioDamage.Play();}
+        public bool isPlayer = false;
 
-        if (_currentLife <= 0)
+        public Action OnKill;
+        //public AudioSource audioDamage;
+
+
+        void Awake()
         {
-            Kill();
-        }
-    }
-
-    private void Kill()
-    {
-        _isDead = true;
-
-        if (destroyOnKill)
-        {
-            Destroy(gameObject, delayKill);
+            Init();
         }
 
-        OnKill.Invoke();
+        private void Init()
+        {
+            _isDead = false;
+            _currentLife = startLife;
+        }
 
-    
-        
+        public void Damage(int damage)
+        {
+            if (_isDead) { return; }
+
+            _currentLife -= damage;
+
+            //if (isPlayer==true) {if (audioDamage != null) audioDamage.Play();}
+
+            if (_currentLife <= 0)
+            {
+                Kill();
+            }
+        }
+
+        private void Kill()
+        {
+            _isDead = true;
+
+            if (destroyOnKill)
+            {
+                Destroy(gameObject, delayKill);
+            }
+
+            OnKill.Invoke();
+
+
+
+        }
     }
 }
     

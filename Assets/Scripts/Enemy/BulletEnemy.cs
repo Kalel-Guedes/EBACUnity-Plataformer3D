@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
-using Enemy;
+using Health;
 
 
 
-public class Bullet : MonoBehaviour
+public class BulletEnemy : MonoBehaviour
 {
     private float TimeReset = 5f;
     public int damage = 1;
     public float speed = 20f;
+    public string compareTag = "Player";
     //public EnemyBase enemyBase;
 
 
@@ -25,14 +26,16 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        var enemy = collision.transform.GetComponent<EnemyBase>();
-
-        if (enemy != null)
+          if (collision.transform.CompareTag(compareTag))
         {
-            enemy.Damage(damage);
-            Destroy(gameObject);
+            var player = collision.transform.GetComponent<HealthBase>();
+
+            if (player != null)
+            {
+                player.Damage(damage);
+                Destroy(gameObject);
+            }
         }
-        
 
     }
 }
