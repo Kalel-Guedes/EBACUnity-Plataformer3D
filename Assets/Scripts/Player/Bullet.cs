@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using Enemy;
+using Health;
 
 
 
@@ -25,13 +26,19 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        var enemy = collision.transform.GetComponent<EnemyBase>();
+        
+        
+        var enemy = collision.transform.GetComponent<HealthBase>();
 
-        if (enemy != null)
+            if (enemy != null)
         {
-            enemy.Damage(damage);
-            Destroy(gameObject);
+            if (enemy.isPlayer == false)
+            {
+                enemy.Damage(damage);
+                Destroy(gameObject);
+            }
         }
+        
         
 
     }

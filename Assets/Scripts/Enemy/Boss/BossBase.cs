@@ -45,6 +45,7 @@ namespace Boss
             {
                 healthBase.OnKill += OnEnemyKill;
             }
+            SwitchWalk();
         }
         private void Init()
         {
