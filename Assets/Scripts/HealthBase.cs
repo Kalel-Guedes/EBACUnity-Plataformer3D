@@ -13,7 +13,7 @@ namespace Health
 
         public float delayKill = 0f;
 
-        private int _currentLife;
+        public int _currentLife;
         private bool _isDead = false;
 
         public bool isPlayer = false;

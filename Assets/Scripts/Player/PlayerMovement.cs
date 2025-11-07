@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using EBAC.StateMachine;
+using Health;
 
 
 
@@ -17,10 +18,22 @@ public class PlayerMovement : MonoBehaviour
     public float jumpSpeed = 15f;
     public KeyCode keyJump = KeyCode.Space;
 
+    [Header("Life")]
+    public HealthBase healthBase;
+    public List<UIUpdater> UiUpdate;
+
     [Header("Run Setup")]
     public KeyCode keyRun = KeyCode.LeftShift;
     public float speedRun = 1.5f;
     
+    
+    void Awake()
+    {
+        if (healthBase != null)
+        {
+            healthBase.OnKill += OnPlayerKill;
+        }
+    }
 
     void Update()
     {
@@ -66,11 +79,21 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Run", false);
         }
 
-   
+        UpdateUI();
         
 
     }
-  
+    private void OnPlayerKill()
+    {
+        animator.SetTrigger("Death");
+        healthBase.OnKill += OnPlayerKill;
+
+    }
+        
+    public void UpdateUI()
+    {
+        UiUpdate.ForEach(i => i.UpdateValue(healthBase.startLife, healthBase._currentLife));
+    }
 
 #region States
 
