@@ -27,7 +27,7 @@ namespace Health
             Init();
         }
 
-        private void Init()
+        public void Init()
         {
             _isDead = false;
             _currentLife = startLife;

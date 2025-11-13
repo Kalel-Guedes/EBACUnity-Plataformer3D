@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Life")]
     public HealthBase healthBase;
     public List<UIUpdater> UiUpdate;
+    public List<Collider> colliders;
+    public bool _alive = true;
 
     [Header("Run Setup")]
     public KeyCode keyRun = KeyCode.LeftShift;
@@ -85,14 +87,43 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnPlayerKill()
     {
-        animator.SetTrigger("Death");
-        healthBase.OnKill += OnPlayerKill;
+        if(_alive)
+        {
+            animator.SetTrigger("Death");
+            healthBase.OnKill += OnPlayerKill;
+            colliders.ForEach(i => i.enabled = false);
+            _alive = false;
 
+
+            Invoke(nameof(Revive), 3);
+        }
     }
-        
+    private void Revive()
+    {
+        healthBase.Init();
+        animator.SetTrigger("Idle");
+        _alive = true;
+        Respawn();
+        Invoke(nameof(ResetColliders), 2);
+    }
+
+    public void ResetColliders()
+    {
+        colliders.ForEach(i => i.enabled = true);
+    }
+
     public void UpdateUI()
     {
         UiUpdate.ForEach(i => i.UpdateValue(healthBase.startLife, healthBase._currentLife));
+    }
+
+    [NaughtyAttributes.Button]
+    public void Respawn()
+    {
+        if(CheckpointManger.Instance.HasCheckpoint())
+        {
+            transform.position = CheckpointManger.Instance.GetPositionRespawn();
+        }
     }
 
 #region States
