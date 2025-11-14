@@ -14,6 +14,8 @@ namespace Enemy
         public int damage = 10;
         public HealthBase healthBase;
         public GameObject enemyArt;
+        public string compareTag = "Player";
+        
 
         private void Awake()
         {
@@ -35,15 +37,18 @@ namespace Enemy
 
         }
 
-        private void OnColliderEnter(Collider collision)
+        private void OnCollisionEnter(Collision collision)
         {
             Debug.Log(collision.transform.name);
 
-            var health = collision.gameObject.GetComponent<HealthBase>();
-
-            if (health != null)
+            if (collision.transform.CompareTag(compareTag))
             {
-                health.Damage(damage);
+                var health = collision.gameObject.GetComponent<HealthBase>();
+
+                if (health != null)
+                {
+                    health.Damage(damage);
+                }
             }
         }
 

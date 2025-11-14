@@ -38,6 +38,8 @@ public class PlayerGun : MonoBehaviour
         obj.transform.position = shootPoint.transform.position;
         obj.transform.rotation = shootPoint.transform.rotation;
         obj.speed = speed;
+
+        CameraShake.Instance.Shake();
     }
 
 
