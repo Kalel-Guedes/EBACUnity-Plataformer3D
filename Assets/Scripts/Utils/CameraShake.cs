@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Core.Singleton;
 using Unity.Cinemachine;
+using NaughtyAttributes;
 
 public class CameraShake : Singleton<CameraShake>
 {
@@ -15,6 +16,7 @@ public class CameraShake : Singleton<CameraShake>
    public float frequency = 3f;
    public float time = .2f;
 
+    [NaughtyAttributes.Button]
    public void Shake()
     {
         Shake(amplitude, frequency, time);

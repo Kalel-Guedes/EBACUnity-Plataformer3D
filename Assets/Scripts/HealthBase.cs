@@ -41,6 +41,8 @@ namespace Health
 
             //if (isPlayer==true) {if (audioDamage != null) audioDamage.Play();}
 
+            if(isPlayer) CameraShake.Instance.Shake();
+
             if (_currentLife <= 0)
             {
                 Kill();
