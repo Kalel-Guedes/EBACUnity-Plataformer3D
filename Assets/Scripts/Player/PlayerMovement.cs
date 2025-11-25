@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using EBAC.StateMachine;
 using Health;
+using Core.Singleton;
 
 
 
@@ -115,6 +116,11 @@ public class PlayerMovement : MonoBehaviour
     public void UpdateUI()
     {
         UiUpdate.ForEach(i => i.UpdateValue(healthBase.startLife, healthBase._currentLife));
+    }
+
+    public void ResetLife()
+    {
+        healthBase._currentLife = healthBase.startLife;
     }
 
     [NaughtyAttributes.Button]
