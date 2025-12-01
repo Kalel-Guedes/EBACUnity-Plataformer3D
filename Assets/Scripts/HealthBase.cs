@@ -17,6 +17,8 @@ namespace Health
         private bool _isDead = false;
 
         public bool isPlayer = false;
+        public GameObject item;
+        public Transform point;
 
         public Action OnKill;
         //public AudioSource audioDamage;
@@ -47,6 +49,24 @@ namespace Health
             {
                 Kill();
             }
+
+            if(isPlayer == false)
+            {
+                Drops();                
+            }
+
+        }
+        private void Drops()
+        {
+            var obj = Instantiate(item);
+            obj.transform.position = point.transform.position;
+           /* var qnt = UnityEngine.Random.Range(1, 5);
+
+            for(int i = 0; i > qnt; i++)
+            {
+                var obj = Instantiate(item);
+                obj.transform.position = point.transform.position;
+            }*/
         }
 
         private void Kill()
