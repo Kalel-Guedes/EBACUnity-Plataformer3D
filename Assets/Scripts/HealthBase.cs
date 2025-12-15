@@ -50,10 +50,10 @@ namespace Health
                 Kill();
             }
 
-            if(isPlayer == false)
+            /*if(isPlayer == false)
             {
                 Drops();                
-            }
+            }*/
 
         }
         private void Drops()
