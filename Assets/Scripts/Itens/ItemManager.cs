@@ -9,7 +9,8 @@ namespace Itens
     public enum ItemType
     {
         COIN,
-        MEDKIT
+        MEDKIT,
+        POWERUP
     }
 
     public class ItemManager : Singleton<ItemManager>

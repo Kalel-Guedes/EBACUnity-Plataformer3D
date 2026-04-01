@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public CharacterController characterController;
+    public float _currentSpeed;
     public float speed = 1f;
     public float turnSpeed = 1f;
     public float gravity = 9.8f;
@@ -18,6 +19,10 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public float jumpSpeed = 15f;
     public KeyCode keyJump = KeyCode.Space;
+
+    [Header("Colors")]
+    public Material material;
+    public Color color;
 
     [Header("Life")]
     public HealthBase healthBase;
@@ -43,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, 0);
 
         var inputAxisVertical = Input.GetAxis("Vertical");
-        var speedVector = transform.forward * inputAxisVertical * speed;
+        var speedVector = transform.forward * inputAxisVertical * _currentSpeed;
 
         if (characterController.isGrounded)
         {
@@ -132,6 +137,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    [NaughtyAttributes.Button]
+    public void ChangeColor()
+    {
+        material.SetColor("_BaseColor", color);
+    }
+
+    [NaughtyAttributes.Button]
+    public void NormalColor()
+    {
+        material.SetColor("_BaseColor", Color.white);
+    }
 
 #region States
 
@@ -154,5 +170,23 @@ public class PlayerMovement : MonoBehaviour
     }
 #endregion
 
-    
+#region PowerUps
+
+public void PowerUpSpeedUp(float f)
+    {
+        _currentSpeed = f;
+    }
+    public void ResetSpeed()
+    {
+        _currentSpeed = speed;
+    }
+    public void SetInvencible(bool b = true)
+    {
+        healthBase.invencible = b;
+    }
+
+
+
+
+#endregion
 }

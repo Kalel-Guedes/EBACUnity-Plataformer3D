@@ -19,6 +19,7 @@ namespace Health
         public bool isPlayer = false;
         public GameObject item;
         public Transform point;
+        public bool invencible = false;
 
         public Action OnKill;
         //public AudioSource audioDamage;
@@ -37,7 +38,7 @@ namespace Health
 
         public void Damage(int damage)
         {
-            if (_isDead) { return; }
+            if (_isDead || invencible) { return; }
 
             _currentLife -= damage;
 
