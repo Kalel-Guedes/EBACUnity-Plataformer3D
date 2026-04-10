@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Colors")]
     public Material material;
-    public Color color;
+    public Color playerColor;
 
     [Header("Life")]
     public HealthBase healthBase;
@@ -138,15 +138,16 @@ public class PlayerMovement : MonoBehaviour
     }
 
     [NaughtyAttributes.Button]
-    public void ChangeColor()
+    public void ChangeColor(Color color)
     {
+        playerColor = color;
         material.SetColor("_BaseColor", color);
     }
 
     [NaughtyAttributes.Button]
     public void NormalColor()
     {
-        material.SetColor("_BaseColor", Color.white);
+        ChangeColor(Color.white);
     }
 
 #region States
