@@ -137,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+#region Colors
     [NaughtyAttributes.Button]
     public void ChangeColor(Color color)
     {
@@ -149,6 +150,23 @@ public class PlayerMovement : MonoBehaviour
     {
         ChangeColor(Color.white);
     }
+
+    public void GreenColor()
+    {
+        ChangeColor(Color.green);
+    }
+
+    public void BlueColor()
+    {
+        ChangeColor(Color.yellow);
+    }
+
+    public void PurpleColor()
+    {
+        ChangeColor(Color.magenta);
+    }
+
+#endregion
 
 #region States
 
