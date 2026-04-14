@@ -18,6 +18,14 @@ public class SaveManager : Singleton<SaveManager>
     {
         DontDestroyOnLoad(gameObject);
         _saveSetup = new SaveSetup();
+
+        
+    }
+
+    private void Start()
+    {
+        
+        Load(); 
     }
 
 
@@ -63,7 +71,8 @@ public class SaveManager : Singleton<SaveManager>
         _saveSetup.roupa = player.playerColor;
         Save();
     }
-    
+     
+
     [NaughtyAttributes.Button]
     public void Load()
     {
@@ -105,4 +114,5 @@ public class SaveSetup
     public int health;
     public int Life;
     public Color roupa;
+    public Vector3 position;
 }
