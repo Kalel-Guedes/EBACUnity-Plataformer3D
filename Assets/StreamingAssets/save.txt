@@ -1,6 +1,6 @@
 {
-    "lastLevel": 0,
-    "coins": 8,
+    "lastLevel": 1,
+    "coins": 3,
     "health": 0,
     "Life": 50,
     "roupa": {
@@ -8,10 +8,5 @@
         "g": 1.0,
         "b": 1.0,
         "a": 1.0
-    },
-    "position": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
     }
 }

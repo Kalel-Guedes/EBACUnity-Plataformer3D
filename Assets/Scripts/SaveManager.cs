@@ -16,7 +16,6 @@ public class SaveManager : Singleton<SaveManager>
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         _saveSetup = new SaveSetup();
 
         
@@ -98,6 +97,7 @@ public class SaveManager : Singleton<SaveManager>
     [NaughtyAttributes.Button]
     public void TurnLoads()
     {
+        player.Respawn();
         player.ChangeColor(_saveSetup.roupa);
         healthBase._currentLife = _saveSetup.Life;
         Itens.ItemManager.Instance.GetItemByType(Itens.ItemType.COIN).itemValor.valor = _saveSetup.coins;
@@ -114,5 +114,4 @@ public class SaveSetup
     public int health;
     public int Life;
     public Color roupa;
-    public Vector3 position;
 }

@@ -12,7 +12,7 @@ public class CheckpointBase : MonoBehaviour
     public bool checkpointActive = false;
     private string checkpointKey = "CheckKey";
     public TextMeshProUGUI textMesh;
-
+    public SaveManager saveManager;
 
 
     private void OnTriggerEnter(Collider other)
@@ -21,7 +21,7 @@ public class CheckpointBase : MonoBehaviour
         {
 
             CheckCheckpoint();
-
+            
         }
     }
     private void OnTriggerExit(Collider other)
@@ -36,6 +36,7 @@ public class CheckpointBase : MonoBehaviour
 
     private void CheckCheckpoint()
     {
+        saveManager.SaveAll();
         turnOn();
         SaveCheckpoint();
 
